@@ -19,12 +19,11 @@ public class Main {
         Date chanBirth = new Date(1954, 4, 7); // April 7, 1954
         Date chanSignup = new Date(1980, 10, 1); // October 1, 1980
 
-
         // Create Name and Person objects
         Name einsteinName = new Name("Albert", "Einstein");
         Person einstein = new Person(einsteinName, einsteinBirth, einsteinDeath);
         BankClient einsteinClient = new BankClient(einsteinName, "abc123", einsteinSignup, einsteinBirth, einsteinDeath);
-        BankAccount einsteinAccount = new BankAccount(einsteinClient, "abc123", 3141, einsteinSignup, einsteinClosure);
+        BankAccount einsteinAccount = new BankAccount(einsteinClient, "abc123", 3141, 1000, einsteinSignup, einsteinClosure); // Closed account
 
         // Print details for Albert Einstein
         System.out.println("Albert Einstein:");
@@ -32,12 +31,12 @@ public class Main {
         System.out.println("Full Name: " + einsteinName.getFullName());
         System.out.println("Reversed Name: " + einsteinName.getReversedName());
         System.out.println("Person Details: " + einstein.getDetails());
-        System.out.println("BankClient Details: " + einsteinClient.getDetails());
+//        System.out.println("BankClient Details: " + einsteinClient.getDetails());
+        System.out.println("BankClient Details: " + einsteinAccount.getDetails());
         System.out.println("BankAccount Balance: $" + einsteinAccount.getBalance());
 
         // Perform deposit and withdrawal operations if the account is open
         try {
-            einsteinAccount.deposit(1000, 3141);
             einsteinAccount.withdraw(100, 3141);
             System.out.println("BankAccount Balance after Withdrawal: $" + einsteinAccount.getBalance());
         } catch (IllegalStateException | IllegalArgumentException e) {
@@ -48,7 +47,7 @@ public class Main {
         Name mandelaName = new Name("Nelson", "Mandela");
         Person mandela = new Person(mandelaName, mandelaBirth, mandelaDeath);
         BankClient mandelaClient = new BankClient(mandelaName, "654321", mandelaSignup, mandelaBirth, mandelaDeath);
-        BankAccount mandelaAccount = new BankAccount(mandelaClient, "654321", 4664, mandelaSignup);
+        BankAccount mandelaAccount = new BankAccount(mandelaClient, "654321", 4664, 2000, mandelaSignup); // Open account
 
         // Print details for Nelson Mandela
         System.out.println("\nNelson Mandela:");
@@ -61,7 +60,6 @@ public class Main {
 
         // Perform deposit and withdrawal operations
         try {
-            mandelaAccount.deposit(2000, 4664);
             mandelaAccount.withdraw(200, 4664);
             System.out.println("BankAccount Balance after Withdrawal: $" + mandelaAccount.getBalance());
         } catch (IllegalStateException | IllegalArgumentException e) {
@@ -72,7 +70,7 @@ public class Main {
         Name kahloName = new Name("Frida", "Kahlo");
         Person kahlo = new Person(kahloName, kahloBirth, kahloDeath);
         BankClient kahloClient = new BankClient(kahloName, "frd123", kahloSignup, kahloBirth, kahloDeath);
-        BankAccount kahloAccount = new BankAccount(kahloClient, "frd123", 1907, kahloSignup, kahloDeath);
+        BankAccount kahloAccount = new BankAccount(kahloClient, "frd123", 1907, 500, kahloSignup, kahloDeath); // Closed account
 
         // Print details for Frida Kahlo
         System.out.println("\nFrida Kahlo:");
@@ -80,12 +78,11 @@ public class Main {
         System.out.println("Full Name: " + kahloName.getFullName());
         System.out.println("Reversed Name: " + kahloName.getReversedName());
         System.out.println("Person Details: " + kahlo.getDetails());
-        System.out.println("BankClient Details: " + kahloClient.getDetails());
+        System.out.println("BankClient Details: " + kahloAccount.getDetails());
         System.out.println("BankAccount Balance: $" + kahloAccount.getBalance());
 
         // Perform deposit and withdrawal operations
         try {
-            kahloAccount.deposit(500, 1907);
             kahloAccount.withdraw(50, 1907);
             System.out.println("BankAccount Balance after Withdrawal: $" + kahloAccount.getBalance());
         } catch (IllegalStateException | IllegalArgumentException e) {
@@ -96,7 +93,7 @@ public class Main {
         Name chanName = new Name("Jackie", "Chan");
         Person chan = new Person(chanName, chanBirth);
         BankClient chanClient = new BankClient(chanName, "chan789", chanSignup, chanBirth);
-        BankAccount chanAccount = new BankAccount(chanClient, "chan789", 1954, chanSignup);
+        BankAccount chanAccount = new BankAccount(chanClient, "chan789", 1954, 3000, chanSignup); // Open account
 
         // Print details for Jackie Chan
         System.out.println("\nJackie Chan:");
@@ -104,12 +101,11 @@ public class Main {
         System.out.println("Full Name: " + chanName.getFullName());
         System.out.println("Reversed Name: " + chanName.getReversedName());
         System.out.println("Person Details: " + chan.getDetails());
-        System.out.println("BankClient Details: " + chanClient.getDetails());
+        System.out.println("BankClient Details: " + chan.getDetails());
         System.out.println("BankAccount Balance: $" + chanAccount.getBalance());
 
         // Perform deposit and withdrawal operations
         try {
-            chanAccount.deposit(3000, 1954);
             chanAccount.withdraw(500, 1954);
             System.out.println("BankAccount Balance after Withdrawal: $" + chanAccount.getBalance());
         } catch (IllegalStateException | IllegalArgumentException e) {

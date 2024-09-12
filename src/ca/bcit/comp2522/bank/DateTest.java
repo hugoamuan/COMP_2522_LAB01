@@ -31,10 +31,6 @@ public class DateTest {
     void testInvalidLeapYear(){
         assertFalse(d3.isLeapYear(2001));
     }
-//    @Test
-//    void testInvalidLeapYear2(){
-//        assertFalse(d4.isLeapYear(1807));
-//    }
 
     @Test
     void testDayOfWeek1() {

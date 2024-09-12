@@ -1,26 +1,42 @@
 package ca.bcit.comp2522.bank;
 
 /**
- * The Name class represents a first and last name with associated methods for retrieval
- * and manipulation of name data.
+ * Name Class representing
  *
  * @author Hugo Amuan
  * @version 1.0
  */
 public class Name {
+
+    // Private instance variable for first and last
     private final String first;
     private final String last;
 
+    // Final: must not be altered.
+    // Belongs to the class itself (static: helps save memory)
+    // Only one copy of the variable in memory regardless of how many instances of the Name class are made.
     private final static int MAX_NAME_LENGTH = 45;
 
     /**
      * Constructs a Name object with the given first and last names.
+     * Must not contain the word "admin", be null or blank and must be fewer than 45 chars.
      *
-     * @param first The first name; must not be null, blank, or contain "admin", and must be fewer than 45 characters.
-     * @param last The last name; must not be null, blank, or contain "admin", and must be fewer than 45 characters.
+     * @param first The first name
+     * @param last The last name;
      * @throws IllegalArgumentException if the provided first or last name is invalid.
      */
     public Name(String first, String last) {
+        nameValidator(first, last);
+        this.first = first;
+        this.last = last;
+    }
+
+    /**
+     * nameValidator method to verify Name object satisfies the requirements of the constructor.
+     * @param first The first string of the Name object
+     * @param last The second string of the Name object
+     */
+    private static void nameValidator(String first, String last) {
         if (first == null || first.isEmpty() || first.isBlank()) {
             throw new IllegalArgumentException("First name is null or blank");
         }
@@ -28,18 +44,15 @@ public class Name {
             throw new IllegalArgumentException("Last name is null or blank");
         }
         if (first.length() >= MAX_NAME_LENGTH || last.length() >= MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("Length for first or last name is equal to or over 45 characters.");
+            throw new IllegalArgumentException("Length for either first or last name must be under 45 characters.");
         }
         if (first.equalsIgnoreCase("admin") || last.equalsIgnoreCase("admin")) {
-            throw new IllegalArgumentException("First and last cannot contain the word: Admin");
+            throw new IllegalArgumentException("First name and last name cannot contain the word: Admin");
         }
-
-        this.first = first;
-        this.last = last;
     }
 
     /**
-     * Returns the first name.
+     * Getter for instance variable "first".
      *
      * @return the first name.
      */
@@ -48,7 +61,7 @@ public class Name {
     }
 
     /**
-     * Returns the last name.
+     * Getter for instance variable "last".
      *
      * @return the last name.
      */
@@ -57,7 +70,7 @@ public class Name {
     }
 
     /**
-     * Returns the initials of the first and last name (e.g. "Tiger Woods" -> "T.W.").
+     * Returns the first letter from first and last concatenated and capitalized.
      *
      * @return the initials of the name.
      */
@@ -75,18 +88,23 @@ public class Name {
     }
 
     /**
-     * Capitalizes the first letter of the provided name and makes the rest lowercase.
+     * Capitalization method to format Name as a proper noun.
      *
      * @param name The name to be capitalized.
      * @return the capitalized name.
      */
     public String capitalizeName(String name) {
         if (name == null || name.isEmpty()) {
-            return name; // Return the original name if it's null or empty
+            return name;
         }
         return name.charAt(0) + name.substring(1).toLowerCase();
     }
 
+    /**
+     * Reverse each letter's position in a full name.
+     * Utilizes StringBuilder's reverse() method.
+     * @return the reversed name using
+     */
     public String getReversedName() {
         String fullName = getFullName();
         StringBuilder reversed = new StringBuilder(fullName);

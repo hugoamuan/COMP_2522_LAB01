@@ -1,48 +1,151 @@
 package ca.bcit.comp2522.bank;
 
-
+/**
+ * Date Class, representing the properties and functions of how humans perceive and track time.
+ * @author HugoAmuan
+ * @version 1.0
+ */
 public class Date {
+
+    /**
+     * Variable storing the number seven
+     */
     private static final int SEVEN = 7;
+    /**
+     * Variable storing the number thirteen. (For zellers congruence)
+     */
     private static final int THIRTEEN = 13;
+    /**
+     * Variable storing the number 31.
+     */
     private static final int THIRTY_ONE = 31;
+    /**
+     * Variable storing the number 30.
+     */
     private static final int THIRTY = 30;
+    /**
+     * Variable storing the number 29.
+     */
     private static final int TWENTY_NINE = 29;
+    /**
+     * Variable storing the number 28
+     */
     private static final int TWENTY_EIGHT = 28;
-    private int year;
-    private int month;
-    private int day;
-
+    /**
+     * Variable storing the number 6.
+     */
+    private static final int SIX = 6;
+    /**
+     * Variable storing the number 5.
+     */
+    private static final int FIVE = 5;
+    /**
+     * Variable storing the year for the Date object.
+     */
+    private final int year;
+    /**
+     * Variable storing the month for the Date object.
+     */
+    private final int month;
+    /**
+     * Variable storing the day for the Date object.
+     */
+    private final int day;
+    /**
+     * Variable holding the current year.
+     */
     private static final int CURRENT_YEAR = 2024;
-
+    /**
+     * Variable holding the minimum year.
+     */
     private static final int MIN_YEAR = 1;
-
+    /**
+     * Variable holding the required minimum value for month.
+     */
     private static final int MIN_MONTH = 1;
+    /**
+     * Variable holding the maximum value for month
+     */
     private static final int MAX_MONTH = 12;
-
+    /**
+     * Variable holding the value for the given month, used in the switch loop in getDaysInMonth()
+     */
     private static final int JANUARY = 1;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int FEBRUARY = 2;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int MARCH = 3;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int APRIL = 4;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int MAY = 5;
-
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int JUNE = 6;
-
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int JULY = 7;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int AUGUST = 8;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int SEPTEMBER = 9;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int OCTOBER = 10;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int NOVEMBER = 11;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int DECEMBER = 12;
+    /**
+     * Variable holding the position of the month out of twelve.
+     */
     private static final int HUNDRED = 100;
-    private static final int TWELVE = 12;
 
+    /**
+     * Variable holding the number four.
+     */
     private static final int FOUR = 4;
 
+    /**
+     * Variable with a value of 4 as well, but is named differently for clarity.
+     */
     private static final int LEAP_YEAR_DIVISOR = 4;
+    /**
+     * Required variable to calculate if a year is a leap year.
+     */
     private static final int CENTURY_DIVISOR = 100;
+    /**
+     * Required variable to calculate if a year is a leap year.
+     */
     private static final int ALT_CENTURY_DIVISOR = 400;
-
+    /**
+     * Variable holding the number of months in a year
+     */
     private static final int MONTHS_IN_YEAR = 12;
+
+
+    /**
+     * Array of type String that holds the word form for days of the week.
+     */
     private static final String[] DAY_OF_WEEK = {
             "SUNDAY",
             "MONDAY",
@@ -53,8 +156,14 @@ public class Date {
             "SATURDAY"
     };
 
+    /**
+     * Constructor for date objects.
+     * @param year of the date
+     * @param month of the date
+     * @param day of the date
+     */
     public Date(int year, int month, int day) {
-        validateYear(year); // Validates the year and if not valid, will throw an exception.
+        validateYear(year);
         validateMonth(month);
         validateDay(year, month, day);
         this.year = year;
@@ -62,37 +171,67 @@ public class Date {
         this.day = day;
     }
 
+    /**
+     * Getter method for day
+     * @return day
+     */
     public int getDay() {
         return day;
     }
 
+    /**
+     * Getter method for month
+     * @return month
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     * Getter method for year
+     * @return year
+     */
     public int getYear() {
         return year;
     }
 
+    /**
+     * Method to format the date as YYYY-MM-DD
+     * @return YYYY-MM-DD
+     */
     public String getYYYYMMDD() {
         return year + "-" + month + "-" + day;
     }
 
 
-    public void validateYear(int year) {
+    /**
+     * Validates the year
+     * @param year to be validated
+     */
+    private static void validateYear(int year) {
         if (year > CURRENT_YEAR || year < MIN_YEAR) {
             throw new IllegalArgumentException("Invalid year, must be between 0 - 2024");
         }
     }
 
-    public void validateMonth(int month) {
+    /**
+     * Validates the month
+     * @param month to be validated
+     */
+    private static void validateMonth(int month) {
         if (month < MIN_MONTH || month > MAX_MONTH) {
             throw new IllegalArgumentException("Invalid month, must be input as 0 - 12 (Jan to Dec)");
         }
     }
 
 
-    public void validateDay(int year, int month, int day) {
+    /**
+     * Validates if the number of days is valid for the month and year given.
+     * @param year of the date
+     * @param month of the date
+     * @param day of the date
+     */
+    private static void validateDay(int year, int month, int day) {
         int daysInMonth = getDaysInMonth(year, month);
         if (day < 1 || day > daysInMonth) {
             throw new IllegalArgumentException("Invalid days for the given month. Maximum amount is: "
@@ -100,7 +239,14 @@ public class Date {
         }
     }
 
-    public int getDaysInMonth(int year, int month) {
+    /**
+     * Calculates the days in a month given a year.
+     * @param year to be checked if is leap year.
+     * @param month to be searched for number of days.
+     * @return the number of days in a given month + year.
+     */
+
+    private static int getDaysInMonth(int year, int month) {
         switch (month) {
             case JANUARY:
             case MARCH:
@@ -116,38 +262,58 @@ public class Date {
             case NOVEMBER:
                 return THIRTY;
             case FEBRUARY:
+                // If true, days in February = 29
                 return isLeapYear(year) ? TWENTY_NINE : TWENTY_EIGHT; // Review Ternary operators!
         }
         throw new IllegalArgumentException("Invalid month: " + month);
     }
 
+    /**
+     * Method utilizing Zeller's Congruence to calculate what day a certain date fell on.
+     * @return Finds DAY_OF_WEEK[x] and returns the word from an Array of Strings
+     */
     public String getDayOfWeek() {
-        // Use a temporary variable to adjust the month
+        // Use a temporary variable to adjust the month, otherwise monthValidator() will result in an error.
         int tempMonth = month;
         int tempYear = year;
 
         // In Zeller's Congruence, Jan and Feb are treated as the 13th and 14th months of the previous year.
         if (tempMonth < Date.MARCH) {
             tempMonth += MONTHS_IN_YEAR;
+            // Go back a year
             tempYear -= 1;
         }
 
         int lastTwoDigits = tempYear % HUNDRED;
         int j = tempYear / HUNDRED;
 
-        int h = (day + (THIRTEEN * (tempMonth + 1)) / 5 + lastTwoDigits + (lastTwoDigits / FOUR) + (j / FOUR) - 2 * j) % SEVEN;
 
-        // Ensure h is within bounds
-        return DAY_OF_WEEK[(h + 6) % 7];
+        // Zeller's  Congruence formula
+        // h = day of the week (0 - 6 (Sun - Fri))
+        int h = (day + (THIRTEEN * (tempMonth + 1)) / FIVE + lastTwoDigits + (lastTwoDigits / FOUR) + (j / FOUR) - 2 * j) % SEVEN;
+
+        // Ensure h is within bounds of the DAY_OF_WEEK array
+        // if (h + SIX) = -1
+        // (-1) % 7 = 6
+        return DAY_OF_WEEK[(h + SIX) % SEVEN];
     }
 
 
-    public boolean isLeapYear(int year) {
+    /**
+     * Method to verify if a given year has an additional day.
+     * @param year to be verified.
+     * @return true/false
+     */
+    public static boolean isLeapYear(int year) {
         return year % LEAP_YEAR_DIVISOR == 0 || (year % CENTURY_DIVISOR != 0
                 && year % ALT_CENTURY_DIVISOR == 0);
     }
 
 
+    /**
+     * Method to turn an integer value for month into a string.
+     * @return x where x is the string representation of a numbered month.
+     */
     public String getMonthName() {
         switch (month) {
             case JANUARY:
@@ -178,6 +344,10 @@ public class Date {
                 throw new IllegalArgumentException("Invalid month: " + month);
         }
     }
+
+    /**
+     * Formats a date as: Monday September 28 1994
+     */
     public String dateFormatter() {
         return String.format("%s %s %d, %d",
                 getDayOfWeek(),
